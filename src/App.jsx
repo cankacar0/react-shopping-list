@@ -28,6 +28,12 @@ export default function App() {
         setItems(items=> items.filter(i=> i.id != id))
   }
 
+  function handleUpdateItem(id){
+    const updatedItems = items => items.map((item)=> item.id == id ? {...item, completed: !item.completed} : item);
+
+    setItems(updatedItems);
+  }
+
   return (
     <div className="container">
       <Header />
@@ -35,7 +41,7 @@ export default function App() {
 
       <FilterButtons />
 
-      <ListItems urunler={items} onDeleteItem ={handleDeleteItem} />
+      <ListItems urunler={items} onDeleteItem ={handleDeleteItem} onUpdateItem ={handleUpdateItem}/>
 
       <ClearButton />
     </div>
